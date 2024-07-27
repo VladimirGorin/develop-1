@@ -1,0 +1,5 @@
+/.vscode
+_docker/mysql/dbdata
+_docker/mysql/mysql.env
+_docker/nginx/logs
+_docker/nginx/conf.d/app.conf
