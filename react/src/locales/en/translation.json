@@ -85,5 +85,10 @@
         "notRegistered": "Not registered?",
         "сreateAccount": "Create an account",
         "sign": "Sign in"
+    },
+    "footer": {
+        "userAgreement": "User agreement",
+        "copyright": "© WorldAion.com All rights belong to the copyright holders.",
+        "privatePolicy": "Private Policy"
     }
 }
