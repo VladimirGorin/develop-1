@@ -1,6 +1,4 @@
 /node_modules
-/storage/*.key
-/vendor
 .env
 .env.backup
 .env.production
@@ -12,5 +10,6 @@ npm-debug.log
 yarn-error.log
 /.fleet
 /.vscode
+/.idea
 /dist
 .env
