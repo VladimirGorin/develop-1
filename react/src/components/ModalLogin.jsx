@@ -5,7 +5,7 @@ import RecaptchaChange from "../assets/views/recaptcha";
 import { useStateContext } from "../contexts/ContextProvider";
 import { useTranslation } from "react-i18next";
 
-const ModalLogin = ({ onClose, isLoading, setIsLoading }) => {
+const ModalLogin = ({ onClose, isLoading, setIsLoading, onSwitchToRegister }) => {
     const emailRef = createRef();
     const passwordRef = createRef();
     const [recaptchaToken, setRecaptchaToken] = useState(null);
@@ -81,10 +81,10 @@ const ModalLogin = ({ onClose, isLoading, setIsLoading }) => {
                                     {t("modal.sign")}
                                 </button>
                                 <p className="message">
-                                    {t("modal.сreateAccount")}{" "}
-                                    <Link to="/signup">
-                                        {t("modal.notRegistered")}
-                                    </Link>
+                                    <span className="link" onClick={onSwitchToRegister}>
+                                        {t("modal.notRegistered")}{" "}
+                                        {t("modal.сreateAccount")}
+                                    </span>
                                 </p>
                             </div>
                         </form>

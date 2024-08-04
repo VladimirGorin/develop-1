@@ -55,9 +55,6 @@ export default function DefaultLayout() {
                 const productResponse = await axiosClient.get("/shugoproduct");
                 setProducts(productResponse.data.data);
 
-                const advancedInfo = await axiosClient.get("/getAllUsers");
-                setAdvancedInfo(advancedInfo.data.data);
-
                 const userResponse = await axiosClient.get("/user");
                 setUser(userResponse.data.user);
                 setAccount(userResponse.data.account);
@@ -66,6 +63,11 @@ export default function DefaultLayout() {
                 setUserRole(userResponse.data.user.role);
                 setPurchasedLog(userResponse.data.purchasedLog);
                 setConnectionVipLog(userResponse.data.connectionVipLog);
+
+                if(userRole == "admin"){
+                    const advancedInfo = await axiosClient.get("/getAllUsers");
+                    setAdvancedInfo(advancedInfo.data.data);
+                }
             } catch (error) {
                 console.error(error);
             } finally {
@@ -101,6 +103,7 @@ export default function DefaultLayout() {
 
     const handleOpenLoginModal = () => {
         setShowLoginModal(true);
+        setShowRegisterModal(false); 
     };
 
     const handleCloseLoginModal = () => {
@@ -109,6 +112,7 @@ export default function DefaultLayout() {
 
     const handleOpenRegisterModal = () => {
         setShowRegisterModal(true);
+        setShowLoginModal(false); 
     };
 
     const handleCloseRegisterModal = () => {
@@ -122,6 +126,7 @@ export default function DefaultLayout() {
     const handleCloseUserAgreementModal = () => {
         setShowUserAgreementModal(false);
     };
+
     const handleOpenPrivatePolicyModal = () => {
         setShowPrivatePolicyModal(true);
     };
@@ -133,6 +138,7 @@ export default function DefaultLayout() {
     const handleAgreement = () => {
         setShowUserAgreementModal(false);
     };
+
     const handlePrivatePolicy = () => {
         setShowPrivatePolicyModal(false);
     };
@@ -257,6 +263,7 @@ export default function DefaultLayout() {
                                     {showRegisterModal && (
                                         <ModalRegister
                                             onClose={handleCloseRegisterModal}
+                                            onSwitchToLogin={handleOpenLoginModal}
                                         />
                                     )}
                                 </div>
@@ -268,6 +275,7 @@ export default function DefaultLayout() {
                                     {showLoginModal && (
                                         <ModalLogin
                                             onClose={handleCloseLoginModal}
+                                            onSwitchToRegister={handleOpenRegisterModal}
                                         />
                                     )}
                                 </div>
@@ -286,9 +294,6 @@ export default function DefaultLayout() {
                         </a>
                         <a href="https://vk.com/world.aion">
                             <div className="vk"></div>
-                        </a>
-                        <a href="">
-                            <div className="bug"></div>
                         </a>
                         <div className="language-button">
                             <button className="current-language">
