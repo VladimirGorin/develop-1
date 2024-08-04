@@ -11,8 +11,9 @@ const RecaptchaChange = ({ onChange }) => {
     };
 
     return (
-        <div>
+        <div className="captcha-wrapper">
             <ReCAPTCHA
+                style={{width: '100%;'}}
                 ref={recaptchaRef}
                 sitekey="6LfxumopAAAAABYuPuN5dLOGUiyMOhGZFQdE4P18"
                 onChange={handleRecaptchaChange}

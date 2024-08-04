@@ -26,19 +26,16 @@ const Modal = ({
 
     const handleSave = async () => {
         try {
-            setIsLoading(true); // Устанавливаем isLoading в true перед выполнением запроса
+            setIsLoading(true); 
             const response = await axiosClient.post("/updateAccount", userData);
-            console.log("Данные успешно отправлены на сервер:", response.data);
             onSaveChanges(userData);
         } catch (error) {
             setError(
                 "Ошибка при отправке данных на сервер:",
                 error.response.data.message
             );
-            // Обработка ошибки
-            // Например, вывод сообщения об ошибке или выполнение других действий
         } finally {
-            setIsLoading(false); // Вне зависимости от результата запроса, устанавливаем isLoading в false
+            setIsLoading(false); 
             onClose();
         }
     };

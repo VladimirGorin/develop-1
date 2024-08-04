@@ -6,7 +6,7 @@
 
 .agreement-table {
     display: flex;
-    height: 580px;
+    height: 68vh;
     flex-direction: column;
     align-items: center;
     gap: 20px;
@@ -54,12 +54,14 @@
 }
 
 .desc--agreement {
-    width: 770px;
+    width: 100%;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
 .title--agreement {
+    padding: 0 20px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     // align-items: center;
@@ -69,4 +71,18 @@
 .checkBox input {
     width: 14px;
     height: 14px;
+}
+
+
+@media (max-width: 650px) {
+    .termsOfUse {
+        align-items: center;
+
+        .checkBox  {
+            input {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
 }

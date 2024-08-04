@@ -3,7 +3,7 @@ import { useStateContext } from "../../contexts/ContextProvider";
 const PaymentHistory = () => {
     const { payLog } = useStateContext();
     return (
-        <div className="container">
+        <div className="container container-payment">
             <div className="payment-history animated fadeInDown">
                 <div className="payment-header">
                     <div className="payment-title">

@@ -1,5 +1,4 @@
 import { useStateContext } from "../../contexts/ContextProvider";
-import moment from "moment";
 import { Link } from "react-router-dom";
 import axiosClient from "../../axios-client";
 import { useEffect, useState } from "react";
@@ -113,14 +112,14 @@ export default function Dashboard() {
                                         <div className="userBoard">
                                             <div className="classIcons">
                                                 {classIcon && (
-                                                    <img
+                                                <img
                                                         src={`assets/classes/${classIcon}.webp`}
                                                         className={`${
                                                             animateClass
                                                                 ? "animated fadeInDown"
                                                                 : ""
                                                         }`}
-                                                    />
+                                                />
                                                 )}
                                             </div>
                                             <div className="selHero">
@@ -302,10 +301,10 @@ export default function Dashboard() {
                                                     <h1>{`${Math.ceil(
                                                         (expireDate.getTime() -
                                                             currentDate.getTime()) /
-                                                            (1000 *
-                                                                60 *
-                                                                60 *
-                                                                24)
+                                                        (1000 *
+                                                            60 *
+                                                            60 *
+                                                            24)
                                                     )}`}</h1>
                                                 )}
                                             </h1>

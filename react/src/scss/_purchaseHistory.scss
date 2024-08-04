@@ -1,4 +1,5 @@
 .purchase--history {
+    width: 100%;
     display: flex;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
@@ -7,12 +8,57 @@
     .table-history {
         display: flex;
         flex-direction: column;
-        width: 652px;
-        height: 670px;
+        width: 100%;
+        height: 100%;
+        max-height: 670px;
 
         border-radius: 5px;
 
         background: rgb(25, 25, 25);
+    }
+}
+
+@media (min-width: 1920px) {
+    .container-adminPanel {
+        max-width: 100% !important;
+    }
+
+    .table-history {
+        max-width: 100%;
+        max-height: 100% !important;
+        width: calc-between-width(1600, 670, 1920) !important;
+
+        .admin-panel {
+            max-height: calc(100vh - 400px);
+
+            button {
+                height: 100%;
+                max-width: 100%;
+                width: calc-between-width(1600, 150, 1920);
+            }
+        }
+        .table--header {
+            padding: .5vw 0;
+        }
+        .information-table {
+            height: calc(100vh - 300px);
+        }
+        .purchase--information {
+
+            .information-table {
+
+                .no--items {
+
+                    .buy--items {
+
+                        button {
+                            width: calc-between-width(1600, 250, 1920);
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -201,4 +247,31 @@
             letter-spacing: 0%;
         }
     }
+}
+
+
+@media (max-width: 450px) {
+    .purchase--history {
+    
+        .table-history {
+
+            .table--header h1 {
+                font-size: 17px;
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .purchase--history {
+    
+        .table-history {
+
+            .player-table th, 
+            .player-table td {
+                padding: 10px 7px;
+            }
+        }
+    }
+
 }

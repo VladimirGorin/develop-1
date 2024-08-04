@@ -64,17 +64,14 @@ const AdminPanel = () => {
             .post("/getAdvancedInfo", userData)
             .then((response) => {
                 setEditedUser(response.data);
-                console.log("Ответ от сервера:", response.data);
-                setIsLoading(false); // Устанавливаем isLoading в false после получения ответа от сервера
+                setIsLoading(false); 
             })
             .catch((error) => {
-                console.error("Ошибка при отправке запроса:", error);
-                setIsLoading(false); // Устанавливаем isLoading в false в случае ошибки
+                setIsLoading(false); 
             });
     };
 
     const handleSaveChanges = (editedData) => {
-        // Логика сохранения изменений
         // editedData содержит отредактированные данные
         setIsEditing(false);
     };
@@ -179,7 +176,7 @@ const AdminPanel = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container container-adminPanel">
             <div className="purchase--history animated fadeInDown">
                 <div className="table-history">
                     <div className="table--header animated fadeInDown">
@@ -215,7 +212,7 @@ const AdminPanel = () => {
                     onSaveChanges={handleSaveChanges}
                     onClose={handleCloseModal}
                     isLoading={isLoading}
-                    setIsLoading={setIsLoading} // Передаем setIsLoading в компонент Modal
+                    setIsLoading={setIsLoading} // send setIsLoading in conponent Modals
                 />
             )}
         </div>

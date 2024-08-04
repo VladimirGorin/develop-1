@@ -109,7 +109,7 @@ export default function Settings() {
                             </div>
 
                             <div className="changeBoard animated fadeInDown">
-                                <div className="passwordChangeBoard">
+                                <div className="passwordChangeBoard pass">
                                     <div className="titleChange">
                                         <h1>ИЗМЕНЕНИЕ ПАРОЛЯ</h1>
                                     </div>

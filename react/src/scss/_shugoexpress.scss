@@ -1,10 +1,14 @@
 .expressBoard {
+    position: relative;
     width: 100%;
-    height: 728px;
-    left: 566px;
-    right: 395px;
-    top: 271px;
-    bottom: 87px;
+    height: 100%;
+    top: 45%;
+    left: 40%;
+    transform: translate(-50%, -50%) scale(.9) !important;
+    // left: 566px;
+    // right: 395px;
+    // top: 271px;
+    // bottom: 87px;
 
     border-radius: 19px;
     display: flex;
@@ -15,12 +19,14 @@
 }
 
 .product {
-    width: 219px;
-    height: 324px;
+    width: 100%;
+    height: 100%;
+    max-width: 216px;
+    min-height: 324px;
     /* Автолейаут */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-start;
     padding: 10px;
     border-radius: 13px;
@@ -29,8 +35,8 @@
     background: rgb(16, 16, 16);
 
     .image--product {
-        width: 199px;
-        height: 200px;
+        width: 100%;
+        height: 100%;
         /* Автолейаут */
         display: flex;
         flex-direction: row;
@@ -43,12 +49,18 @@
         img {
             border-radius: 5px;
             width: 100%;
-            height: 100%;
+            min-height: 199px;
+            object-fit: cover;
         }
+    }
+    
+    .product-data {
+        width: 100%;
     }
 
     .product--information {
-        width: 197px;
+        margin-bottom: 15px;
+        width: 100%;
         /* Автолейаут */
         display: flex;
         flex-direction: column;
@@ -58,7 +70,8 @@
 }
 
 .express--products {
-    width: 937px;
+    width: 100%;
+    max-width: 937px;
     min-height: 100%;
     border-radius: 40px;
     /* Автолейаут */
@@ -66,9 +79,10 @@
     flex-wrap: wrap; /* Разрешаем автоматический перенос элементов на новую строку */
     // overflow: scroll;
     flex-direction: row;
+    justify-content: flex-start;
     align-items: flex-start;
     // padding: 15px 63px 15px 21px;
-    padding: 0px 0px 0px 21px;
+    padding: 0 20px 20px 20px;
     flex: none;
     gap: 11px;
     transform-style: preserve-3d; /* Сохраняем 3D-пространство */
@@ -97,8 +111,8 @@
 }
 
 .expressBtn button {
-    width: 138px;
-    height: 29px;
+    width: 100%;
+    min-height: 29px;
     display: flex;
 
     border-radius: 4px;
@@ -136,8 +150,8 @@
 }
 
 .express--header {
-    width: 959px;
-    height: 62px;
+    padding: 20px 0;
+    width: 100%;
     left: 566px;
     right: 395px;
     top: 237px;
@@ -147,10 +161,12 @@
 
     .express--category {
         /* Автолейаут */
+        padding: 0 25px;
+        width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        gap: 500px;
+        gap: 20px;
     }
 }
 
@@ -175,7 +191,6 @@
     &:hover {
         animation: pulse 1s infinite; /* Анимация мерцания */
     }
-    animation: pulse 2s ease-in-out infinite;
 }
 
 .history--buys button {
@@ -189,7 +204,6 @@
     &:hover {
         animation: pulse 1s infinite; /* Анимация мерцания */
     }
-    animation: pulse 2s ease-in-out infinite;
 }
 
 .payment--history {
@@ -206,7 +220,6 @@
         &:hover {
             animation: pulse 1s infinite; /* Анимация мерцания */
         }
-        animation: pulse 2s ease-in-out infinite;
     }
 }
 
@@ -324,6 +337,7 @@
 }
 
 .expressContent {
+    min-width: 937px;
     overflow: hidden;
     // height: 100%;
     display: flex;
@@ -458,6 +472,7 @@
         font-weight: 600;
         letter-spacing: 0%;
         text-transform: uppercase;
+        white-space: nowrap;
     }
 }
 
@@ -519,9 +534,40 @@
     animation: fadeIn 0.4s ease-in-out forwards; /* Анимация появления */
 }
 
+.expressBurgerMenu.mob {
+    margin-top: 15px;
+    display: none;
+    position: static;
+    gap: 20px;
+    width: 100%;
+
+    .expressmenu {
+        position: static;
+        width: 100%;
+
+        ul {
+            display: grid;
+            grid-template: repeat(2, auto) / repeat(3, auto);
+        }
+    }
+    .expressSelect {
+        width: 100%;
+        text-align: center;
+
+        .selHero {
+            width: 100%;
+
+            .select-Hero {
+                text-align: center;
+            }
+        }
+    }
+}
+
 .expressSelect {
     display: flex;
     justify-content: center;
+    align-items: center;
 
     right: -260px; /* Изначально за пределами экрана */
     width: 250px;
@@ -531,6 +577,11 @@
     transition: right 0.3s ease;
     border-radius: 15px;
     animation: fadeIn 0.4s ease-in-out forwards; /* Анимация появления */
+
+    .selHero {
+        width: 100%;
+        max-width: 170px;
+    }
 }
 
 .expressmenu::-webkit-scrollbar {
@@ -687,6 +738,147 @@
 
         &:focus::placeholder {
             color: transparent;
+        }
+    }
+}
+
+
+@media (max-width: 1350px) {
+    .expressBoard {
+        left: 35%;
+    }
+}
+
+@media (max-width: 1250px) {
+    .expressBoard {
+        left: 50%;
+
+        .expressmenu {
+            overflow: hidden;
+        }
+        .expressContent {
+            min-width: 100%;
+            width: 91vw;
+
+            .express--products {
+                justify-content: center;
+            }
+        }
+    }
+    .expressBurgerMenu {
+        display: none;
+    }
+    .expressBurgerMenu.mob {
+        display: flex;
+    }
+}
+
+@media (max-width: 900px) {
+    .product {
+        width: 100%;
+    }
+}
+
+@media (max-width: 875px) {
+    .expressBoard {
+        top: 50%;
+    }
+}
+
+@media (min-width: 1250px) {
+    .expressBoard {
+        height: 720px;
+    }
+}
+
+@media (max-width: 450px) {
+    .expressBoard {
+
+        .header--category {
+            gap: 20px;
+        }
+    }
+    .expressBurgerMenu.mob {
+        .expressmenu {
+    
+            ul {
+                display: block;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 1920px) {
+    .expressBoard {
+        width: calc-between-width(1600, 937, 1920);
+        height: 100%;
+
+        .expressContent {
+            width: 100%;
+
+            .express--header {
+                
+                .express--category {
+
+                    .header--category {
+                        width: 100%;
+                        justify-content: space-between;
+                        
+                        .premium {
+                            gap: 30px;
+
+                            button {
+                                width: 1.7vw;
+                                height: 1.7vw;
+                                background-size: contain;
+                            }
+
+                            .history--buys,
+                            .payment--history {
+                                width: 1.7vw;
+                                height: 1.7vw;
+                            }
+                        }
+                    }
+                }
+            }
+            .express--scroll {
+                min-height: calc(100vh - 300px);
+
+                .express--products {
+                    max-width: 100%;
+
+                    .product {
+                        max-width: 100%;
+                        min-height: 100%;
+                        width: calc-between-width(1600, 216, 1920);
+                        height: 390px;
+
+                        .image--product {
+                            img {
+                                height: 260px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .expressBurgerMenu {
+
+            .expressSelect {
+                padding: 50px 10px;
+                width: calc-between-width(1600, 250, 1920);
+                height: max-content;
+
+                .selHero {
+                    max-width: 100%;
+                }
+            }
+            .expressmenu {
+                width: calc-between-width(1600, 250, 1920);
+                right: initial;
+            }
         }
     }
 }
