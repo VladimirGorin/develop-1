@@ -6,11 +6,11 @@ import { NavLink } from "react-router-dom";
 import ModalLogin from "./ModalLogin";
 import ModalRegister from "./ModalRegister";
 import { useTranslation } from "react-i18next";
+import Modal from "../assets/views/TermsOfUseModal";
+import ModalPrivatePolicy from "../assets/views/PrivatePolicyModal";
 
-// import languageRuImg from "../img/site/language/ru.svg";
 import languageRuImg from "../img/svg/flag/Flag_of_Russia.svg";
 import languageEnImg from "../img/svg/flag/Flag_of_the_United_Kingdom_(3-5).svg.png";
-// import languageEnImg from "../img/site/language/en.svg";
 
 export default function DefaultLayout() {
     const {
@@ -33,9 +33,15 @@ export default function DefaultLayout() {
     const { t, i18n } = useTranslation();
     const location = useLocation();
 
+    const checkMainPage = () => {
+        return location.pathname == '/' || location.pathname == '/site' ? 'mainPage' : 'otherPage';
+    }
+
     const [userRole, setUserRole] = useState(null);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [showUserAgreementModal, setShowUserAgreementModal] = useState(false); 
+    const [showPrivatePolicyModal, setShowPrivatePolicyModal] = useState(false); 
 
     useEffect(() => {
         const fetchData = async () => {
@@ -49,9 +55,6 @@ export default function DefaultLayout() {
                 const productResponse = await axiosClient.get("/shugoproduct");
                 setProducts(productResponse.data.data);
 
-                const advancedInfo = await axiosClient.get("/getAllUsers");
-                setAdvancedInfo(advancedInfo.data.data);
-
                 const userResponse = await axiosClient.get("/user");
                 setUser(userResponse.data.user);
                 setAccount(userResponse.data.account);
@@ -60,6 +63,11 @@ export default function DefaultLayout() {
                 setUserRole(userResponse.data.user.role);
                 setPurchasedLog(userResponse.data.purchasedLog);
                 setConnectionVipLog(userResponse.data.connectionVipLog);
+
+                if(userRole == "admin"){
+                    const advancedInfo = await axiosClient.get("/getAllUsers");
+                    setAdvancedInfo(advancedInfo.data.data);
+                }
             } catch (error) {
                 console.error(error);
             } finally {
@@ -83,6 +91,7 @@ export default function DefaultLayout() {
     ) {
         return <Navigate to="/login" />;
     }
+
     const onLogout = (ev) => {
         ev.preventDefault();
 
@@ -94,6 +103,7 @@ export default function DefaultLayout() {
 
     const handleOpenLoginModal = () => {
         setShowLoginModal(true);
+        setShowRegisterModal(false); 
     };
 
     const handleCloseLoginModal = () => {
@@ -102,10 +112,35 @@ export default function DefaultLayout() {
 
     const handleOpenRegisterModal = () => {
         setShowRegisterModal(true);
+        setShowLoginModal(false); 
     };
 
     const handleCloseRegisterModal = () => {
         setShowRegisterModal(false);
+    };
+
+    const handleOpenUserAgreementModal = () => {
+        setShowUserAgreementModal(true);
+    };
+
+    const handleCloseUserAgreementModal = () => {
+        setShowUserAgreementModal(false);
+    };
+
+    const handleOpenPrivatePolicyModal = () => {
+        setShowPrivatePolicyModal(true);
+    };
+
+    const handleClosePrivatePolicyModal = () => {
+        setShowPrivatePolicyModal(false);
+    };
+
+    const handleAgreement = () => {
+        setShowUserAgreementModal(false);
+    };
+
+    const handlePrivatePolicy = () => {
+        setShowPrivatePolicyModal(false);
     };
 
     const changeLanguage = (lng) => {
@@ -117,10 +152,38 @@ export default function DefaultLayout() {
             <div className="content">
                 <header>
                     <div className="content_header">
-                        <NavLink to="/site">
+                        <NavLink to="/site" className={"pc"}>
                             <div className="logoAion"></div>
                         </NavLink>
-                        <div className="headerInfo">
+                        <div className="mobileLogo">
+                            <NavLink to="/site">
+                                <div className="logoAion"></div>
+                            </NavLink>
+                            {token && <div>
+                                <div className="playerInfo">
+                                    {token && (
+                                        <div className="information--player">
+                                            <div className="username">
+                                                <p>{user.name}</p>
+                                            </div>
+                                            <div className="balance">
+                                                <p>{user.coin} WP</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {token && (
+                                        <div className="exit">
+                                            <button
+                                                onClick={onLogout}
+                                                className="btn-logout"
+                                                href="#"
+                                            ></button>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>}
+                        </div>
+                        {token && <div className="headerInfo">
                             {userRole === "admin" && (
                                 <NavLink
                                     to="/adminpanel"
@@ -130,7 +193,6 @@ export default function DefaultLayout() {
                                     <h1>{t("header.adminPanel")}</h1>
                                 </NavLink>
                             )}
-                            {token && (
                                 <>
                                     <NavLink
                                         to="/site"
@@ -169,44 +231,9 @@ export default function DefaultLayout() {
                                         <h1>{t("header.shugoExpress")}</h1>
                                     </NavLink>
                                 </>
-                            )}
-                        </div>
-                    </div>
-
-                    <div>
-                        <div className="playerInfo">
-                            {!token && (
-                                <div className="sign">
-                                    <div className="reg">
-                                        <button
-                                            onClick={handleOpenRegisterModal}
-                                            id="registration"
-                                        >
-                                            <p>{t("header.startNow")}</p>
-                                        </button>
-                                        {showRegisterModal && (
-                                            <ModalRegister
-                                                onClose={
-                                                    handleCloseRegisterModal
-                                                }
-                                            />
-                                        )}
-                                    </div>
-                                    <div className="sign-in">
-                                        <button
-                                            onClick={handleOpenLoginModal}
-                                            id="sign-in"
-                                        ></button>
-                                        {showLoginModal && (
-                                            <ModalLogin
-                                                onClose={handleCloseLoginModal}
-                                            />
-                                        )}
-                                    </div>
-                                </div>
-                            )}
-
-                            {token && (
+                        </div>}
+                        {token && <div className="playerInfoWrapper">
+                            <div className="playerInfo">
                                 <div className="information--player">
                                     <div className="username">
                                         <p>{user.name}</p>
@@ -215,8 +242,6 @@ export default function DefaultLayout() {
                                         <p>{user.coin} WP</p>
                                     </div>
                                 </div>
-                            )}
-                            {token && (
                                 <div className="exit">
                                     <button
                                         onClick={onLogout}
@@ -224,13 +249,43 @@ export default function DefaultLayout() {
                                         href="#"
                                     ></button>
                                 </div>
-                            )}
-                        </div>
+                            </div>
+                        </div>}
+                        {!token && (
+                            <div className="sign">
+                                <div className="reg">
+                                    <button
+                                        onClick={handleOpenRegisterModal}
+                                        id="registration"
+                                    >
+                                        <p>{t("header.startNow")}</p>
+                                    </button>
+                                    {showRegisterModal && (
+                                        <ModalRegister
+                                            onClose={handleCloseRegisterModal}
+                                            onSwitchToLogin={handleOpenLoginModal}
+                                        />
+                                    )}
+                                </div>
+                                <div className="sign-in">
+                                    <button
+                                        onClick={handleOpenLoginModal}
+                                        id="sign-in"
+                                    ></button>
+                                    {showLoginModal && (
+                                        <ModalLogin
+                                            onClose={handleCloseLoginModal}
+                                            onSwitchToRegister={handleOpenRegisterModal}
+                                        />
+                                    )}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </header>
-                <main>
+                <main className={checkMainPage()}>
                     <Outlet />
-                    <div className="social-icons">
+                    {checkMainPage() !== 'otherPage' && <div className="social-icons">
                         <a href="https://t.me/aionworld">
                             <div className="telegram"></div>
                         </a>
@@ -239,9 +294,6 @@ export default function DefaultLayout() {
                         </a>
                         <a href="https://vk.com/world.aion">
                             <div className="vk"></div>
-                        </a>
-                        <a href="">
-                            <div className="bug"></div>
                         </a>
                         <div className="language-button">
                             <button className="current-language">
@@ -260,7 +312,7 @@ export default function DefaultLayout() {
                                 )}
                             </button>
                         </div>
-                    </div>
+                    </div>}
                 </main>
                 {notification && (
                     <div className="notification">{notification}</div>
@@ -289,17 +341,18 @@ export default function DefaultLayout() {
                     </div>
 
                     <div className="footer-link">
-                        {/* <div className="footer-links">
+                        <div className="footer-links">
+                            <p onClick={handleOpenUserAgreementModal}>
+                                {t("footer.userAgreement")} 
+                            </p>
+                            <p onClick={handleOpenPrivatePolicyModal}>
+                                {t("footer.privatePolicy")} 
+                            </p>
+                            <p>{t("footer.copyright")}</p>
                             <a href="#">
-                                <p>{t("privacyPolicy")}</p>
+                                {/* <p>{t("paymentSecurity")}</p> */}
                             </a>
-                            <a href="#">
-                                <p>{t("userAgreement")}</p>
-                            </a>
-                            <a href="#">
-                                <p>{t("paymentSecurity")}</p>
-                            </a>
-                        </div> */}
+                        </div>
 
                         {/* <div className="language-button">
                             <button className="current-language">
@@ -320,6 +373,16 @@ export default function DefaultLayout() {
                         </div> */}
                     </div>
                 </footer>
+                <Modal 
+                    isOpen={showUserAgreementModal}
+                    onClose={handleCloseUserAgreementModal}
+                    agreement={handleAgreement}
+                />
+                <ModalPrivatePolicy 
+                    isOpen={showPrivatePolicyModal}
+                    onClose={handleClosePrivatePolicyModal}
+                    agreement={handlePrivatePolicy}
+                />
             </div>
         </div>
     );

@@ -15,9 +15,12 @@
 }
 .headerInfo {
     min-width: 525px;
+    position: relative;
+    z-index: 10;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 
     h1 {
         font-family: "El Messiri", sans-serif;
@@ -29,9 +32,11 @@
 }
 
 .content_header {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 100px;
+    justify-content: space-between;
+    gap: 10px;
     margin-left: 50px;
 }
 
@@ -81,8 +86,11 @@
     gap: 22px;
     min-width: 151px;
     min-height: 35px;
+    position: relative;
+    z-index: 10;
     p {
         @include paragraphText(16px, 800);
+        white-space: nowrap;
     }
 }
 
@@ -116,5 +124,120 @@
     }
 }
 
-// .active-link {
-// }
+.mobileLogo {
+    display: none;
+    flex-direction: column;
+    gap: 7px;
+
+    .playerInfo {
+        justify-content: center;
+    }
+}   
+
+
+@media (max-width: 1275px) {
+    .information--player {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1000px) {
+    #defaultLayout {
+        header {
+            padding: 2% 3%;
+        }
+    }
+    .content_header {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 870px) {
+    header:has(.headerInfo) .content_header {
+        padding-top: 30px;
+    }
+    .content_header a.pc, .playerInfoWrapper{
+        display: none;
+    }
+    .mobileLogo {
+        display: flex;
+    }
+}
+
+@media (max-width: 750px) {
+    header:has(.headerInfo) .content_header {
+        padding-top: 50px;
+    }
+    .headerInfo {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 450px) {
+    header:has(.headerInfo) .content_header {
+        padding-top: 70px;
+    }
+}
+
+@media (max-width: 400px) {
+    header:has(.headerInfo) .content_header {
+        padding-top: 80px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .site-title {
+        p {
+            font-size: 30px;
+        }
+        h2 {
+            font-size: 16px;
+        }
+        .site-install {
+            h2 {
+                font-size: 20px !important;
+            }
+        }
+    }
+    .content_header {
+        justify-content: flex-end;
+    }
+    .playerInfoWrapper {
+        display: block;
+    }
+    .mobileLogo {
+        display: none;
+    }
+}
+
+@media (min-width: 1920px) {
+    #defaultLayout header {
+        height:  max-content;
+
+        .content_header {
+            align-items: center;
+
+            .playerInfo,
+            .information--player {
+                align-items: center;
+            }
+            .exit {
+                width: 100%;
+                height: 100%;
+
+                .btn-logout {
+                    width: calc-between-width(1600, 25, 1920);
+                    height: 1.7vw;
+                    background-size: contain;
+                    transform: translateY(5px);
+                }
+            }
+        }
+        .logoAion {
+            height: 3.3vw;
+            max-height: 100%;
+            max-width: 100%;
+            width: calc-between-width(1600, 150, 1920);
+            background-size: contain;
+        }
+    }
+}

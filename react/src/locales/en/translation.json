@@ -1,7 +1,7 @@
 {
     "site": {
-        "worldTitle": "UNITED KINGDOM - BEST PERSONALITY",
-        "worldDesc": "Open new world of possibilities! At least in exclusive tests. Two ideas are forming soon. The end of the antechamber is already here - first in the center and only a short distance to the change of world",
+        "worldTitle": "One World - Boundless Opportunities.",
+        "worldDesc": "We offer a unique gaming experience based on version 4.8 with various activities, responsive administration and an active community of players.",
         "install": "INSTALL"
     },
     "header": {
@@ -85,5 +85,10 @@
         "notRegistered": "Not registered?",
         "сreateAccount": "Create an account",
         "sign": "Sign in"
+    },
+    "footer": {
+        "userAgreement": "User agreement",
+        "copyright": "© WorldAion.com All rights belong to the copyright holders.",
+        "privatePolicy": "Private Policy"
     }
 }

@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Water_",
+        "item_code": "1100000000",
+        "category": "other",
+        "icon": "icon1.png",
+        "lable": "New",
+        "desc": "Описание товара 1",
+        "price": 100,
+        "discount": 0,
+        "islot": true,
+        "priority": 1,
+        "vip": false,
+        "day": 0,
+        "active": true
+    },
+    {
+        "title": "Ring of Dragon",
+        "item_code": "1200000000",
+        "category": "Accessory",
+        "icon": "icon2.png",
+        "lable": "Sale",
+        "desc": "Описание товара 2",
+        "price": 200,
+        "discount": 0,
+        "islot": false,
+        "priority": 2,
+        "vip": false,
+        "day": 0,
+        "active": true
+    }
+]

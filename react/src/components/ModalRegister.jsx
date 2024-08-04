@@ -6,7 +6,7 @@ import RecaptchaChange from "../assets/views/recaptcha";
 import Modal from "../assets/views/TermsOfUseModal";
 import { useTranslation } from "react-i18next";
 
-const ModalRegister = ({ onClose }) => {
+const ModalRegister = ({ onClose, onSwitchToLogin }) => {
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -129,8 +129,10 @@ const ModalRegister = ({ onClose }) => {
                                 {t("modal.registration")}
                             </button>
                             <p className="message">
-                                {t("modal.alreadyRegistered")}{" "}
-                                <Link to="/login">{t("modal.sign")}</Link>
+                                <span className="link" onClick={onSwitchToLogin}>
+                                    {t("modal.alreadyRegistered")}{" "}
+                                    {t("modal.sign")}
+                                </span>
                             </p>
                         </div>
                     </form>

@@ -5,7 +5,9 @@
     flex-direction: column;
     width: 100%;
     margin: 0px 15px 0px 15px;
-    height: 573px;
+    height: max-content;
+    max-height: 573px;
+    margin: 10px 20px 0px 20px;
 
     border-radius: 10px;
 
@@ -27,7 +29,6 @@
                 width: 20px;
             }
         }
-        margin: 10px 20px 0px 20px;
     }
     p {
         @include paragraphText(16px);
@@ -49,7 +50,8 @@
 
     button {
         height: 25px;
-        width: 150px;
+        width: 100%;
+        max-width: 150px;
         border-radius: 3px;
         background: rgb(255, 114, 114);
         box-shadow: 0 0 10px rgb(255, 114, 114);
@@ -100,9 +102,12 @@
 }
 
 .modal-content {
-    width: 400px;
-    height: 650px;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    max-height: 650px;
     box-sizing: border-box;
+    overflow-y: auto;
     border: 1px solid rgb(163, 163, 219);
     border-radius: 15px;
     box-shadow: 0px 0px 100px -1px rgba(111, 111, 220, 0.25);
@@ -113,6 +118,14 @@
     gap: 20px;
     align-items: center;
     justify-content: center;
+
+    form {
+        
+        .title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    }
     button {
         border-radius: 10px;
         background: linear-gradient(
@@ -175,6 +188,10 @@
     top: 0;
     z-index: 1;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.player-table tr {
+    width: 100%;
 }
 
 .player-table th,
@@ -253,4 +270,59 @@ table > tbody > tr > td {
 
 .dropdown:hover .serverOnline {
     background-color: lightgreen;
+}
+
+.container-adminPanel {
+    width: 100%;
+    max-width: 652px;
+
+    .modal-content {
+        padding: 0 70px;
+
+        form {
+            width: 100%;
+
+            .logoAion {
+                width: 100%;
+            }
+            .gm {
+                gap: 11px;
+            }
+            button {
+                padding: 7px 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .container-adminPanel {
+
+        .modal-content {
+            padding: 0 20px;
+        }
+    } 
+}
+
+@media (max-width: 350px) {
+    .modal-overlay {
+
+        .modal-content {
+            padding: 0 15px;
+        }
+    }
+}
+
+@media (min-width: 1920px) {
+    .modal-content {
+        max-height: 90%;
+        max-width: 100%;
+        width: calc-between-width(1600, 400, 1920);
+
+        .logoAion {
+            height: calc-between-width(1600, 50, 1920);
+            max-width: 100%;
+            background-size: contain;
+        }
+    }
 }

@@ -186,6 +186,88 @@ export default function ShugoExpress() {
                                 purchaseStatus={purchaseStatus}
                                 isBtnStoreVisible={isBtnStoreVisible}
                             />
+                            <div className="expressBurgerMenu mob">
+                                <div className="expressSelect">
+                                    <div className="selHero">
+                                        <select
+                                            className="select-Hero"
+                                            onChange={selectPerson}
+                                        >
+                                            <option
+                                                defaultValue={"selectDefault"}
+                                                className="selectDefault"
+                                                hidden
+                                            >
+                                                Выберите персонажа:
+                                            </option>
+
+                                            {Object.keys(persons).map((key) => (
+                                                <option
+                                                    key={persons[key].id}
+                                                    value={`${persons[key].id}:${persons[key].name}`}
+                                                    data-classicon={
+                                                        persons[key].player_class
+                                                    }
+                                                >
+                                                    {persons[key].name} {persons[key].level}{" "}
+                                                    LVL
+                                                </option>
+                                            ))}
+                                        </select>
+                                        {/* {error && (
+                                            <div className="error animated fadeInDown">
+                                                <p>{error}</p>
+                                            </div>
+                                        )}
+                                        {success && (
+                                            <div className="success animated fadeInDown">
+                                                <p>{success}</p>
+                                            </div>
+                                        )} */}
+                                    </div>
+                                </div>
+                                <div className={`expressmenu`}>
+                                    <ul>
+                                        <li
+                                            className={
+                                                activeCategory === "all"
+                                                    ? "activeCategory"
+                                                    : ""
+                                            }
+                                            onClick={() => {
+                                                handleCategoryChange({
+                                                    target: { value: "all" },
+                                                });
+                                            }}
+                                        >
+                                            <h2> ВСЕ ПРОДУКТЫ</h2>
+                                        </li>
+                                        {Array.from(
+                                            new Set(
+                                                Object.values(products).map(
+                                                    (product) => product.category
+                                                )
+                                            )
+                                        ).map((category) => (
+                                            <li
+                                                key={category}
+                                                className={
+                                                    activeCategory === category
+                                                        ? "activeCategory"
+                                                        : ""
+                                                }
+                                                onClick={() => {
+                                                    handleCategoryChange({
+                                                        target: { value: category },
+                                                    });
+                                                }}
+                                            >
+                                                <h2>{category}</h2>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

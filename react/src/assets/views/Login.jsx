@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import axiosClient from "../../axios-client";
 import { useStateContext } from "../../contexts/ContextProvider";
 import RecaptchaChange from "./recaptcha";
-import "../../css/index.css";
 
 export default function Login() {
     const emailRef = createRef();

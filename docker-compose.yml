@@ -9,11 +9,13 @@ services:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
     volumes:
-      - .:/var/www
+      - ./api:/var/www
       - ./_docker/backend/php.ini:/usr/local/etc/php/php.ini
     container_name: cp_aion_app
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
+    networks:
+      - network
 
   nginx:
     image: nginx:alpine
@@ -21,18 +23,19 @@ services:
     ports:
       - "85:80"
     volumes:
-      - .:/var/www
+      - ./api:/var/www
       - ./_docker/nginx/conf.d/:/etc/nginx/conf.d/
       - ./_docker/nginx/logs:/var/log/nginx
     container_name: cp_aion_nginx
     depends_on:
       - backend
-
+    networks:
+      - network
   db:
     image: mysql:5.7.22
     restart: unless-stopped
     ports:
-      - "3306:3306"
+      - "3307:3306"
     command:
       [
         '--character-set-server=utf8mb4',
@@ -47,17 +50,23 @@ services:
     container_name: cp_aion_mysql
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping" ]
+    networks:
+      - network
 
-  node:
-    build:
-      context: .
-      dockerfile: ./_docker/nodejs/Dockerfile
-    restart: always
-    ports:
-      - "3000:3000"
-    working_dir: /home/node/app/resources/js
-    # command: sh -c "npm install && npm run build"
-    command: sh -c "npm install && npm run dev"
-    volumes:
-      - .:/home/node/app
-    container_name: cp_aion_nodejs
+  # node:
+  #   build:
+  #     context: .
+  #     dockerfile: ./_docker/nodejs/Dockerfile
+  #   restart: always
+  #   ports:
+  #     - "3000:3000"
+  #   working_dir: /home/node/app/resources/js
+  #   # command: sh -c "npm install && npm run build"
+  #   command: sh -c "npm install && npm run dev"
+  #   volumes:
+  #     - .:/home/node/app
+  #   container_name: cp_aion_nodejs
+
+networks:
+  network:
+    driver: bridge

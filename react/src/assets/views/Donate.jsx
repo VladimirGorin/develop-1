@@ -109,9 +109,9 @@ const Donate = () => {
                                 <div className="unavailable">
                                     <div className="icon">&#9888;</div>
                                 </div>
-                            </div>
-                            <div className="unavailable">
-                                <div className="icon">&#9888;</div>
+                                <div className="unavailable">
+                                    <div className="icon">&#9888;</div>
+                                </div>
                             </div>
                         </div>
                     </div>

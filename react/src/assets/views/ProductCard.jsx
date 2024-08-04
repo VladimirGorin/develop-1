@@ -16,39 +16,41 @@ const ProductCard = ({ product, handleSelectedProduct }) => {
             <div className="image--product">
                 <img src={product.icon} alt="" />
             </div>
-            <div className="product--information">
-                <div className="product--title">
-                    <h2>{product.title}</h2>
-                </div>
-                <div className="product--price">
-                    <h3>{lot == 0 ? product.price : product.price * lot} WP</h3>
-                </div>
-            </div>
-            <div className="expressBtn">
-                <button
-                    className="blinkLight"
-                    onClick={(ev) =>
-                        handleSelectedProduct(
-                            ev,
-                            product.id,
-                            product.price,
-                            product.title,
-                            lot
-                        )
-                    }
-                >
-                    <p>ДОСТАВКА</p>
-                </button>
-                {product.islot == true && (
-                    <div className="lotProducts">
-                        <input
-                            type="text"
-                            size="10"
-                            value={lot}
-                            onChange={handleLotChange}
-                        />
+            <div className="product-data">
+                <div className="product--information">
+                    <div className="product--title">
+                        <h2>{product.title}</h2>
                     </div>
-                )}
+                    <div className="product--price">
+                        <h3>{lot == 0 ? product.price : product.price * lot} WP</h3>
+                    </div>
+                </div>
+                <div className="expressBtn">
+                    <button
+                        className="blinkLight"
+                        onClick={(ev) =>
+                            handleSelectedProduct(
+                                ev,
+                                product.id,
+                                product.price,
+                                product.title,
+                                lot
+                            )
+                        }
+                    >
+                        <p>ДОСТАВКА</p>
+                    </button>
+                    {product.islot == true && (
+                        <div className="lotProducts">
+                            <input
+                                type="text"
+                                size="10"
+                                value={lot}
+                                onChange={handleLotChange}
+                            />
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

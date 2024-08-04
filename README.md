@@ -16,7 +16,18 @@
   npm install
   cp .env.example .env
   ```
-  
+
+### Docker start
+- Copy and edit nginx config (example: server_name 91.1.1.1 www.api.site.com)
+  ```cp app.conf.example app.conf ```
+- Start docker-compose
+  ``` docker-compose up -d ```
+- Connect to the api container and install laravel dependencies
+
+### Command for create base products from json file
+Path file: storage/app/imports
+``` php artisan import:products products.json ```
+
 ### Contributing
 We welcome contributions! Please follow the steps below:
 1. Fork the repository:
