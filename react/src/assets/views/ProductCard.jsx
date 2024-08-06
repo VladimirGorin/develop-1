@@ -6,7 +6,6 @@ const ProductCard = ({ product, handleSelectedProduct }) => {
     const handleLotChange = (event) => {
         const inputValue = event.target.value;
 
-        // Если значение пустое, обновляем состояние
         if (inputValue === "" || /^[0-9]{1,2}$/.test(inputValue)) {
             setLot(inputValue);
         }
@@ -34,6 +33,7 @@ const ProductCard = ({ product, handleSelectedProduct }) => {
                                 product.id,
                                 product.price,
                                 product.title,
+                                product.item_code,
                                 lot
                             )
                         }

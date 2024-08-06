@@ -40,8 +40,8 @@ export default function DefaultLayout() {
     const [userRole, setUserRole] = useState(null);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
-    const [showUserAgreementModal, setShowUserAgreementModal] = useState(false); 
-    const [showPrivatePolicyModal, setShowPrivatePolicyModal] = useState(false); 
+    const [showUserAgreementModal, setShowUserAgreementModal] = useState(false);
+    const [showPrivatePolicyModal, setShowPrivatePolicyModal] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -103,7 +103,7 @@ export default function DefaultLayout() {
 
     const handleOpenLoginModal = () => {
         setShowLoginModal(true);
-        setShowRegisterModal(false); 
+        setShowRegisterModal(false);
     };
 
     const handleCloseLoginModal = () => {
@@ -112,7 +112,7 @@ export default function DefaultLayout() {
 
     const handleOpenRegisterModal = () => {
         setShowRegisterModal(true);
-        setShowLoginModal(false); 
+        setShowLoginModal(false);
     };
 
     const handleCloseRegisterModal = () => {
@@ -343,10 +343,10 @@ export default function DefaultLayout() {
                     <div className="footer-link">
                         <div className="footer-links">
                             <p onClick={handleOpenUserAgreementModal}>
-                                {t("footer.userAgreement")} 
+                                {t("footer.userAgreement")}
                             </p>
                             <p onClick={handleOpenPrivatePolicyModal}>
-                                {t("footer.privatePolicy")} 
+                                {t("footer.privatePolicy")}
                             </p>
                             <p>{t("footer.copyright")}</p>
                             <a href="#">
@@ -373,12 +373,12 @@ export default function DefaultLayout() {
                         </div> */}
                     </div>
                 </footer>
-                <Modal 
+                <Modal
                     isOpen={showUserAgreementModal}
                     onClose={handleCloseUserAgreementModal}
                     agreement={handleAgreement}
                 />
-                <ModalPrivatePolicy 
+                <ModalPrivatePolicy
                     isOpen={showPrivatePolicyModal}
                     onClose={handleClosePrivatePolicyModal}
                     agreement={handlePrivatePolicy}
