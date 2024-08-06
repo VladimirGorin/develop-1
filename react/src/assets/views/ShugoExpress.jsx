@@ -27,6 +27,7 @@ export default function ShugoExpress() {
         id: "",
         price: "",
         title: "",
+        item_code: "",
         lot: lot,
         personId: selectedPerson.id,
         personName: selectedPerson.name,
@@ -49,6 +50,7 @@ export default function ShugoExpress() {
         productId,
         productPrice,
         productTitle,
+        item_code,
         lot
     ) => {
         setSelectedProduct((prevState) => ({
@@ -56,12 +58,12 @@ export default function ShugoExpress() {
             id: productId,
             price: productPrice * lot,
             title: productTitle,
+            item_code: item_code,
             lot: lot == 0 ? 1 : lot,
             personId: selectedPerson ? selectedPerson.id : null,
             personName: selectedPerson ? selectedPerson.name : null,
         }));
 
-        setModalOpen(true);
         setModalOpen(true);
     };
 
@@ -94,6 +96,7 @@ export default function ShugoExpress() {
             id: "",
             price: "",
             title: "",
+            item_code: "",
             lot: lot,
             personId: "",
             personName: "",
@@ -170,6 +173,7 @@ export default function ShugoExpress() {
                                 <ProductCard
                                     key={product.id}
                                     product={product}
+                                    item_code={product.item_code}
                                     handleSelectedProduct={
                                         handleSelectedProduct
                                     }

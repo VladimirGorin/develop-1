@@ -55,6 +55,8 @@ class ShugoExpressController extends Controller
             'product' => Product::find($valid['id']),
             'personId' => $valid['personId'],
             'personName' => $valid['personName'],
+            'title' => $valid['title'],
+            'item_code' => $valid['item_code'],
             'ip' => $ip,
             'lot' => $valid['lot'],
         ];

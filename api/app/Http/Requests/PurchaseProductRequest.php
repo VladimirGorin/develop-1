@@ -25,6 +25,8 @@ class PurchaseProductRequest extends FormRequest
             'id' => 'required|exists:products,id',
             'personId' => '',
             'personName' => '',
+            'title' => '',
+            'item_code' => '',
             'lot' => 'required|integer|between:1,99',
         ];
     }
