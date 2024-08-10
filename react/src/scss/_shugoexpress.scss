@@ -53,7 +53,7 @@
             object-fit: cover;
         }
     }
-    
+
     .product-data {
         width: 100%;
     }
@@ -76,7 +76,8 @@
     border-radius: 40px;
     /* Автолейаут */
     display: flex;
-    flex-wrap: wrap; /* Разрешаем автоматический перенос элементов на новую строку */
+    flex-wrap: wrap;
+    /* Разрешаем автоматический перенос элементов на новую строку */
     // overflow: scroll;
     flex-direction: row;
     justify-content: flex-start;
@@ -85,7 +86,8 @@
     padding: 0 20px 20px 20px;
     flex: none;
     gap: 11px;
-    transform-style: preserve-3d; /* Сохраняем 3D-пространство */
+    transform-style: preserve-3d;
+    /* Сохраняем 3D-пространство */
 }
 
 // .express--products::-webkit-scrollbar {
@@ -101,13 +103,15 @@
 .lotProducts input {
     display: flex;
     align-items: center;
-    justify-content: center; /* Добавьте это для центрирования по горизонтали */
+    justify-content: center;
+    /* Добавьте это для центрирования по горизонтали */
     height: 30px;
     width: 40px;
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
-    text-align: center; /* Центрирование текста по горизонтали внутри инпута */
+    text-align: center;
+    /* Центрирование текста по горизонтали внутри инпута */
 }
 
 .expressBtn button {
@@ -119,11 +123,10 @@
     justify-content: center;
     align-items: center;
 
-    background: linear-gradient(
-        18.57deg,
-        rgb(252, 115, 23) -16.21%,
-        rgb(255, 219, 90) 144.917%
-    );
+    background: linear-gradient(18.57deg,
+            rgb(252, 115, 23) -16.21%,
+            rgb(255, 219, 90) 144.917%);
+
     p {
         color: rgb(255, 255, 255);
         font-family: "El Messiri", sans-serif;
@@ -175,6 +178,7 @@
     gap: 10px;
     align-items: center;
 }
+
 .history--buys {
     width: 24px;
     height: 24px;
@@ -183,42 +187,46 @@
 .premium button {
     width: 24px;
     height: 24px;
-    background: url(../img/shugoexpress/premium--category/premium.svg) top
-        no-repeat;
+    background: url(../img/shugoexpress/premium--category/premium.svg) top no-repeat;
     filter: drop-shadow(0 0 10px #ff8800);
-    transition: filter 0.5s ease-in-out; /* Плавное изменение фильтра (тени) */
+    transition: filter 0.5s ease-in-out;
+    /* Плавное изменение фильтра (тени) */
 
     &:hover {
-        animation: pulse 1s infinite; /* Анимация мерцания */
+        animation: pulse 1s infinite;
+        /* Анимация мерцания */
     }
 }
 
 .history--buys button {
     width: 24px;
     height: 24px;
-    background: url(../img/shugoexpress/premium--category/history--buys.svg) top
-        no-repeat;
+    background: url(../img/shugoexpress/premium--category/history--buys.svg) top no-repeat;
     filter: drop-shadow(0 0 10px #fff);
-    transition: filter 0.5s ease-in-out; /* Плавное изменение фильтра (тени) */
+    transition: filter 0.5s ease-in-out;
+    /* Плавное изменение фильтра (тени) */
 
     &:hover {
-        animation: pulse 1s infinite; /* Анимация мерцания */
+        animation: pulse 1s infinite;
+        /* Анимация мерцания */
     }
 }
 
 .payment--history {
     width: 24px;
     height: 24px;
+
     button {
         width: 24px;
         height: 24px;
-        background: url(../img/shugoexpress/premium--category/cardholder.svg)
-            top no-repeat;
+        background: url(../img/shugoexpress/premium--category/cardholder.svg) top no-repeat;
         filter: drop-shadow(0 0 10px #fff);
-        transition: filter 0.5s ease-in-out; /* Плавное изменение фильтра (тени) */
+        transition: filter 0.5s ease-in-out;
+        /* Плавное изменение фильтра (тени) */
 
         &:hover {
-            animation: pulse 1s infinite; /* Анимация мерцания */
+            animation: pulse 1s infinite;
+            /* Анимация мерцания */
         }
     }
 }
@@ -236,17 +244,20 @@
 // }
 
 .express--scroll::-webkit-scrollbar {
-    width: 0px; /* Ширина полосы прокрутки */
+    width: 0px;
+    /* Ширина полосы прокрутки */
 }
 
 // СКРОЛЛ
 
 .express--scroll {
     overflow-y: auto;
-    max-height: 640px; /* Укажите желаемую максимальную высоту контейнера */
+    max-height: 640px;
+    /* Укажите желаемую максимальную высоту контейнера */
     margin: 9px 0px 0px 0px;
     border-radius: 50px;
-    z-index: 1; /* Установите значение z-index на ваше усмотрение */
+    z-index: 1;
+    /* Установите значение z-index на ваше усмотрение */
     // &::before,
     // &::after {
     //     content: "";
@@ -285,6 +296,7 @@
     display: flex;
     gap: 50px;
 }
+
 .ribbon {
     position: absolute;
     right: -5px;
@@ -295,6 +307,7 @@
     height: 75px;
     text-align: right;
 }
+
 .ribbon span {
     font-size: 10px;
     font-weight: bold;
@@ -313,6 +326,7 @@
     top: 19px;
     right: -21px;
 }
+
 .ribbon span::before {
     content: "";
     position: absolute;
@@ -324,6 +338,7 @@
     border-bottom: 3px solid transparent;
     border-top: 3px solid #8f0808;
 }
+
 .ribbon span::after {
     content: "";
     position: absolute;
@@ -349,14 +364,17 @@
 .burgerClose {
     display: none;
     cursor: pointer;
-    color: #fff; /* Цвет крестика */
-    opacity: 0; /* Установим начальную непрозрачность */
+    color: #fff;
+    /* Цвет крестика */
+    opacity: 0;
+    /* Установим начальную непрозрачность */
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -380,8 +398,10 @@
 
     cursor: pointer;
 
-    opacity: 0; /* hide this */
-    z-index: 2; /* and place it over the hamburger */
+    opacity: 0;
+    /* hide this */
+    z-index: 2;
+    /* and place it over the hamburger */
 
     -webkit-touch-callout: none;
 }
@@ -415,11 +435,11 @@
     transform-origin: 0% 100%;
 }
 
-/* 
+/*
  * Transform all the slices of hamburger
  * into a crossmark.
  */
-#menuToggle input:checked ~ span {
+#menuToggle input:checked~span {
     opacity: 1;
     transform: rotate(45deg) translate(-10px, -20px);
     background: #cdcdcd;
@@ -428,7 +448,7 @@
 /*
  * But let's hide the middle one.
  */
-#menuToggle input:checked ~ span:nth-last-child(3) {
+#menuToggle input:checked~span:nth-last-child(3) {
     opacity: 0;
     transform: rotate(0deg) scale(0.2, 0.2);
 }
@@ -436,7 +456,7 @@
 /*
  * Ohyeah and the last one should go the other direction
  */
-#menuToggle input:checked ~ span:nth-last-child(2) {
+#menuToggle input:checked~span:nth-last-child(2) {
     transform: rotate(-45deg) translate(0, 10px);
 }
 
@@ -465,6 +485,7 @@
 .balanceWP {
     display: flex;
     justify-content: center;
+
     h3 {
         color: rgb(255, 255, 255);
         font-family: "El Messiri", sans-serif;
@@ -482,7 +503,8 @@
     display: block;
     position: fixed;
     overflow: scroll;
-    right: -260px; /* Изначально за пределами экрана */
+    right: -260px;
+    /* Изначально за пределами экрана */
     width: 250px;
     height: 73%;
     top: 195px;
@@ -490,11 +512,13 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease;
     border-radius: 15px;
-    animation: fadeIn 0.4s ease-in-out forwards; /* Анимация появления */
+    animation: fadeIn 0.4s ease-in-out forwards;
+    /* Анимация появления */
 
     h2 {
         @include paragraphText(16px, 800);
     }
+
     .activeCategory {
         h2 {
             @include paragraphText(16px, 900);
@@ -512,13 +536,16 @@
 .expressmenu li {
     padding: 10px 0;
     border-bottom: 2px solid #2d2d2d;
-    color: #fff; /* Цвет текста */
+    color: #fff;
+    /* Цвет текста */
     cursor: pointer;
-    transition: color 0.3s ease; /* Плавное изменение цвета при наведении */
+    transition: color 0.3s ease;
+    /* Плавное изменение цвета при наведении */
 }
 
 .expressmenu h2:hover {
-    color: #6c6c6c; /* Цвет текста при наведении */
+    color: #6c6c6c;
+    /* Цвет текста при наведении */
 }
 
 .expressBurgerMenu {
@@ -526,12 +553,14 @@
     flex-direction: column;
     height: 100%;
     position: fixed;
-    right: -260px; /* Изначально за пределами экрана */
+    right: -260px;
+    /* Изначально за пределами экрана */
     width: 250px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease;
     border-radius: 15px;
-    animation: fadeIn 0.4s ease-in-out forwards; /* Анимация появления */
+    animation: fadeIn 0.4s ease-in-out forwards;
+    /* Анимация появления */
 }
 
 .expressBurgerMenu.mob {
@@ -550,6 +579,7 @@
             grid-template: repeat(2, auto) / repeat(3, auto);
         }
     }
+
     .expressSelect {
         width: 100%;
         text-align: center;
@@ -569,14 +599,16 @@
     justify-content: center;
     align-items: center;
 
-    right: -260px; /* Изначально за пределами экрана */
+    right: -260px;
+    /* Изначально за пределами экрана */
     width: 250px;
     height: 25%;
     background-color: rgb(25, 25, 25);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease;
     border-radius: 15px;
-    animation: fadeIn 0.4s ease-in-out forwards; /* Анимация появления */
+    animation: fadeIn 0.4s ease-in-out forwards;
+    /* Анимация появления */
 
     .selHero {
         width: 100%;
@@ -585,14 +617,17 @@
 }
 
 .expressmenu::-webkit-scrollbar {
-    width: 0px; /* Ширина полосы прокрутки */
+    width: 0px;
+    /* Ширина полосы прокрутки */
 }
+
 ///span
 
 [data-tooltip] {
     position: absolute;
-    pointer: cursor;
+    cursor: pointer;
 }
+
 [data-tooltip]::before,
 [data-tooltip]::after {
     text-transform: none;
@@ -602,11 +637,13 @@
     display: none;
     opacity: 0;
 }
+
 [data-tooltip]::before {
     content: "";
     border: 6px solid transparent;
     z-index: 101;
 }
+
 [data-tooltip]::after {
     content: attr(data-tooltip);
     text-align: center;
@@ -621,24 +658,29 @@
     color: #ffffff;
     z-index: 100;
 }
+
 [data-tooltip]:hover::before,
 [data-tooltip]:hover::after {
     display: block;
 }
+
 [data-tooltip=""]::before,
 [data-tooltip=""]::after {
     display: none !important;
 }
+
 [data-tooltip]:not([data-flow])::before,
 [data-tooltip][data-flow^="top"]::before {
     bottom: 100%;
     border-bottom-width: 0;
     border-top-color: #333333;
 }
+
 [data-tooltip]:not([data-flow])::after,
 [data-tooltip][data-flow^="top"]::after {
     bottom: calc(100% + 5px);
 }
+
 [data-tooltip]:not([data-flow])::before,
 [data-tooltip]:not([data-flow])::after,
 [data-tooltip][data-flow^="top"]::before,
@@ -646,19 +688,23 @@
     left: 50%;
     transform: translate(-50%, -0.4em);
 }
+
 [data-tooltip][data-flow^="bottom"]::before {
     top: 100%;
     border-top-width: 0;
     border-bottom-color: #333333;
 }
+
 [data-tooltip][data-flow^="bottom"]::after {
     top: calc(100% + 5px);
 }
+
 [data-tooltip][data-flow^="bottom"]::before,
 [data-tooltip][data-flow^="bottom"]::after {
     left: 50%;
     transform: translate(-50%, 0.4em);
 }
+
 [data-tooltip][data-flow^="left"]::before {
     top: 50%;
     border-right-width: 0;
@@ -666,11 +712,13 @@
     left: calc(0em - 5px);
     transform: translate(-0.5em, -50%);
 }
+
 [data-tooltip][data-flow^="left"]::after {
     top: 50%;
     right: calc(100% + 5px);
     transform: translate(-0.4em, -50%);
 }
+
 [data-tooltip][data-flow^="right"]::before {
     top: 50%;
     border-left-width: 0;
@@ -678,23 +726,27 @@
     right: calc(0em - 7px);
     transform: translate(0.4em, -50%);
 }
+
 [data-tooltip][data-flow^="right"]::after {
     top: 50%;
     left: calc(100% + 5px);
     transform: translate(0.5em, -50%);
 }
+
 @keyframes tooltip-vert {
     to {
         opacity: 1;
         transform: translate(-50%, 0);
     }
 }
+
 @keyframes tooltip-horz {
     to {
         opacity: 1;
         transform: translate(0, -50%);
     }
 }
+
 [data-tooltip]:not([data-flow]):hover::before,
 [data-tooltip]:not([data-flow]):hover::after,
 [data-tooltip][data-flow^="top"]:hover::before,
@@ -703,6 +755,7 @@
 [data-tooltip][data-flow^="bottom"]:hover::after {
     animation: tooltip-vert 0.5s ease-out forwards;
 }
+
 [data-tooltip][data-flow^="left"]:hover::before,
 [data-tooltip][data-flow^="left"]:hover::after,
 [data-tooltip][data-flow^="right"]:hover::before,
@@ -733,7 +786,8 @@
             font-weight: 800;
             letter-spacing: 0%;
             text-align: center;
-            transition: all 0.3s ease; /* Добавлено свойство transition для анимации */
+            transition: all 0.3s ease;
+            /* Добавлено свойство transition для анимации */
         }
 
         &:focus::placeholder {
@@ -756,6 +810,7 @@
         .expressmenu {
             overflow: hidden;
         }
+
         .expressContent {
             min-width: 100%;
             width: 91vw;
@@ -765,9 +820,11 @@
             }
         }
     }
+
     .expressBurgerMenu {
         display: none;
     }
+
     .expressBurgerMenu.mob {
         display: flex;
     }
@@ -798,9 +855,10 @@
             gap: 20px;
         }
     }
+
     .expressBurgerMenu.mob {
         .expressmenu {
-    
+
             ul {
                 display: block;
             }
@@ -818,13 +876,13 @@
             width: 100%;
 
             .express--header {
-                
+
                 .express--category {
 
                     .header--category {
                         width: 100%;
                         justify-content: space-between;
-                        
+
                         .premium {
                             gap: 30px;
 
@@ -843,6 +901,7 @@
                     }
                 }
             }
+
             .express--scroll {
                 min-height: calc(100vh - 300px);
 
@@ -864,6 +923,7 @@
                 }
             }
         }
+
         .expressBurgerMenu {
 
             .expressSelect {
@@ -875,6 +935,7 @@
                     max-width: 100%;
                 }
             }
+
             .expressmenu {
                 width: calc-between-width(1600, 250, 1920);
                 right: initial;
