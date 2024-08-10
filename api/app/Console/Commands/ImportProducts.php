@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class ImportProducts extends Command
 {
+
+    // php artisan import:products products.json
+
     protected $signature = 'import:products {file}';
     protected $description = 'Import products from a JSON file';
 
@@ -32,12 +35,15 @@ class ImportProducts extends Command
 
         foreach ($data as $item) {
             Product::create([
-                'title' => $item['title'],
+                'title_ru' => $item['title_ru'],
+                'title_en' => $item['title_en'],
                 'item_code' => $item['item_code'],
-                'category' => $item['category'],
+                'category_ru' => $item['category_ru'],
+                'category_en' => $item['category_en'],
                 'icon' => $item['icon'],
                 'lable' => $item['lable'],
-                'desc' => $item['desc'],
+                'desc_ru' => $item['desc_ru'],
+                'desc_en' => $item['desc_en'],
                 'price' => $item['price'],
                 'discount' => $item['discount'],
                 'islot' => $item['islot'],

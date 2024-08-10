@@ -87,6 +87,7 @@
     "footer": {
         "userAgreement": "Пользовательское соглашение",
         "copyright": "© WorldAion.com Все права принадлежат правообладателям.",
-        "privatePolicy": "Политика конфиденциальности"
+        "privatePolicy": "Политика конфиденциальности",
+        "paymentSecurity": "Безопасность платежей"
     }
 }

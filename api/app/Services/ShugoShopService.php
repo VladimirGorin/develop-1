@@ -51,7 +51,7 @@ class ShugoShopService
         // give item
         $this->aion_gs->table('shugo_shop')->insert([
             'recipientName' => $data['personName'],
-            'title' => $data['title'],
+            'message' => $data['title'],
             'item_code' => $data['item_code'],
             'item_count' => $data['lot'],
         ]);

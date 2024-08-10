@@ -8,6 +8,7 @@ import ModalRegister from "./ModalRegister";
 import { useTranslation } from "react-i18next";
 import Modal from "../assets/views/TermsOfUseModal";
 import ModalPrivatePolicy from "../assets/views/PrivatePolicyModal";
+import ModalPaymentSecurity from "../assets/views/PaymentSecurityModal";
 
 import languageRuImg from "../img/svg/flag/Flag_of_Russia.svg";
 import languageEnImg from "../img/svg/flag/Flag_of_the_United_Kingdom_(3-5).svg.png";
@@ -42,6 +43,7 @@ export default function DefaultLayout() {
     const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [showUserAgreementModal, setShowUserAgreementModal] = useState(false);
     const [showPrivatePolicyModal, setShowPrivatePolicyModal] = useState(false);
+    const [showPaymentSecurityModal, setShowPaymentSecurityModal] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -145,6 +147,19 @@ export default function DefaultLayout() {
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
+    };
+
+
+    const handlePaymentSecurity = () => {
+        setShowPaymentSecurityModal(false);
+    };
+
+    const handleOpenPaymentSecurityModal = () => {
+        setShowPaymentSecurityModal(true);
+    };
+
+    const handleClosePaymentSecurityModal = () => {
+        setShowPaymentSecurityModal(false);
     };
 
     return (
@@ -348,10 +363,10 @@ export default function DefaultLayout() {
                             <p onClick={handleOpenPrivatePolicyModal}>
                                 {t("footer.privatePolicy")}
                             </p>
+                            <p onClick={handleOpenPaymentSecurityModal}>
+                                {t("footer.paymentSecurity")}
+                            </p>
                             <p>{t("footer.copyright")}</p>
-                            <a href="#">
-                                {/* <p>{t("paymentSecurity")}</p> */}
-                            </a>
                         </div>
 
                         {/* <div className="language-button">
@@ -382,6 +397,11 @@ export default function DefaultLayout() {
                     isOpen={showPrivatePolicyModal}
                     onClose={handleClosePrivatePolicyModal}
                     agreement={handlePrivatePolicy}
+                />
+                <ModalPaymentSecurity
+                    isOpen={showPaymentSecurityModal}
+                    onClose={handleClosePaymentSecurityModal}
+                    agreement={handlePaymentSecurity}
                 />
             </div>
         </div>
