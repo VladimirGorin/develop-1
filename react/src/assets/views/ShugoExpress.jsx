@@ -4,6 +4,7 @@ import axiosClient from "../../axios-client";
 import Modal from "./Modal";
 import ProductCard from "./ProductCard";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function ShugoExpress() {
     const {
@@ -32,6 +33,9 @@ export default function ShugoExpress() {
         personId: selectedPerson.id,
         personName: selectedPerson.name,
     });
+
+    const { i18n } = useTranslation();
+    const lang = i18n.language;
 
     const selectPerson = (ev) => {
         const selectedValue = ev.target.value;
@@ -82,12 +86,10 @@ export default function ShugoExpress() {
                 const response = err.response;
                 if (response && response.status === 422) {
                     setError(response.data.message);
-                    // setSuccess(data.status);
                 }
             });
 
         setBtnStoreVisible(false);
-        return;
     };
 
     const handleModalClose = () => {
@@ -112,12 +114,16 @@ export default function ShugoExpress() {
     const filteredProducts =
         selectedCategory === "all"
             ? Object.values(products)
-            : Object.values(products).filter(
-                  (product) => product.category === selectedCategory
-              );
+            : Object.values(products).filter((product) => {
+                const category =
+                    lang === "ru" ? product.category_ru : product.category_en;
+                return category === selectedCategory;
+            });
+
 
     const filteredAndSearchedProducts = filteredProducts.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+
+        product.title_ru && product.title_ru.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -131,27 +137,20 @@ export default function ShugoExpress() {
                                     <button></button>
                                     <Link to="/purchaseHistory">
                                         <div className="history--buys">
-                                            <span
-                                                data-tooltip="История покупок"
-                                                data-flow="top"
-                                            >
+                                            <span data-tooltip="История покупок" data-flow="top">
                                                 <button></button>
                                             </span>
                                         </div>
                                     </Link>
                                     <Link to="/paymentHistory">
                                         <div className="payment--history">
-                                            <span
-                                                data-tooltip="История пополнений"
-                                                data-flow="top"
-                                            ></span>
+                                            <span data-tooltip="История пополнений" data-flow="top"></span>
                                             <button></button>
                                         </div>
                                     </Link>
                                 </div>
 
                                 <div className="search--express">
-                                    {" "}
                                     <form className="find">
                                         <input
                                             type="text"
@@ -169,17 +168,20 @@ export default function ShugoExpress() {
                     </div>
                     <div className="express--scroll">
                         <div className="express--products">
-                            {filteredAndSearchedProducts.map((product) => (
-                                <ProductCard
-                                    key={product.id}
-                                    product={product}
-                                    item_code={product.item_code}
-                                    handleSelectedProduct={
-                                        handleSelectedProduct
-                                    }
-                                    lot={lot}
-                                />
-                            ))}
+
+                            {filteredAndSearchedProducts.length > 0 ? (
+                                filteredAndSearchedProducts.map((product) => (
+                                    <ProductCard
+                                        key={product.id}
+                                        product={product}
+                                        item_code={product.item_code}
+                                        handleSelectedProduct={handleSelectedProduct}
+                                        lot={lot}
+                                    />
+                                ))
+                            ) : (
+                                <p>Нет продуктов для отображения</p>
+                            )}
                             <Modal
                                 isOpen={isModalOpen}
                                 title={selectedProduct.title}
@@ -193,15 +195,8 @@ export default function ShugoExpress() {
                             <div className="expressBurgerMenu mob">
                                 <div className="expressSelect">
                                     <div className="selHero">
-                                        <select
-                                            className="select-Hero"
-                                            onChange={selectPerson}
-                                        >
-                                            <option
-                                                defaultValue={"selectDefault"}
-                                                className="selectDefault"
-                                                hidden
-                                            >
+                                        <select className="select-Hero" onChange={selectPerson}>
+                                            <option defaultValue={"selectDefault"} className="selectDefault" hidden>
                                                 Выберите персонажа:
                                             </option>
 
@@ -209,47 +204,29 @@ export default function ShugoExpress() {
                                                 <option
                                                     key={persons[key].id}
                                                     value={`${persons[key].id}:${persons[key].name}`}
-                                                    data-classicon={
-                                                        persons[key].player_class
-                                                    }
+                                                    data-classicon={persons[key].player_class}
                                                 >
-                                                    {persons[key].name} {persons[key].level}{" "}
-                                                    LVL
+                                                    {persons[key].name} {persons[key].level} LVL
                                                 </option>
                                             ))}
                                         </select>
-                                        {/* {error && (
-                                            <div className="error animated fadeInDown">
-                                                <p>{error}</p>
-                                            </div>
-                                        )}
-                                        {success && (
-                                            <div className="success animated fadeInDown">
-                                                <p>{success}</p>
-                                            </div>
-                                        )} */}
                                     </div>
                                 </div>
                                 <div className={`expressmenu`}>
                                     <ul>
                                         <li
-                                            className={
-                                                activeCategory === "all"
-                                                    ? "activeCategory"
-                                                    : ""
-                                            }
-                                            onClick={() => {
-                                                handleCategoryChange({
-                                                    target: { value: "all" },
-                                                });
-                                            }}
+                                            className={activeCategory === "all" ? "activeCategory" : ""}
+                                            onClick={() => handleCategoryChange({ target: { value: "all" } })}
                                         >
                                             <h2> ВСЕ ПРОДУКТЫ</h2>
                                         </li>
                                         {Array.from(
                                             new Set(
                                                 Object.values(products).map(
-                                                    (product) => product.category
+                                                    (product) =>
+                                                        lang === "ru"
+                                                            ? product.category_ru
+                                                            : product.category_en
                                                 )
                                             )
                                         ).map((category) => (
@@ -260,11 +237,9 @@ export default function ShugoExpress() {
                                                         ? "activeCategory"
                                                         : ""
                                                 }
-                                                onClick={() => {
-                                                    handleCategoryChange({
-                                                        target: { value: category },
-                                                    });
-                                                }}
+                                                onClick={() =>
+                                                    handleCategoryChange({ target: { value: category } })
+                                                }
                                             >
                                                 <h2>{category}</h2>
                                             </li>
@@ -278,15 +253,8 @@ export default function ShugoExpress() {
                 <div className="expressBurgerMenu">
                     <div className="expressSelect">
                         <div className="selHero">
-                            <select
-                                className="select-Hero"
-                                onChange={selectPerson}
-                            >
-                                <option
-                                    defaultValue={"selectDefault"}
-                                    className="selectDefault"
-                                    hidden
-                                >
+                            <select className="select-Hero" onChange={selectPerson}>
+                                <option defaultValue={"selectDefault"} className="selectDefault" hidden>
                                     Выберите персонажа:
                                 </option>
 
@@ -294,47 +262,29 @@ export default function ShugoExpress() {
                                     <option
                                         key={persons[key].id}
                                         value={`${persons[key].id}:${persons[key].name}`}
-                                        data-classicon={
-                                            persons[key].player_class
-                                        }
+                                        data-classicon={persons[key].player_class}
                                     >
-                                        {persons[key].name} {persons[key].level}{" "}
-                                        LVL
+                                        {persons[key].name} {persons[key].level} LVL
                                     </option>
                                 ))}
                             </select>
-                            {/* {error && (
-                                <div className="error animated fadeInDown">
-                                    <p>{error}</p>
-                                </div>
-                            )}
-                            {success && (
-                                <div className="success animated fadeInDown">
-                                    <p>{success}</p>
-                                </div>
-                            )} */}
                         </div>
                     </div>
                     <div className={`expressmenu`}>
                         <ul>
                             <li
-                                className={
-                                    activeCategory === "all"
-                                        ? "activeCategory"
-                                        : ""
-                                }
-                                onClick={() => {
-                                    handleCategoryChange({
-                                        target: { value: "all" },
-                                    });
-                                }}
+                                className={activeCategory === "all" ? "activeCategory" : ""}
+                                onClick={() => handleCategoryChange({ target: { value: "all" } })}
                             >
                                 <h2> ВСЕ ПРОДУКТЫ</h2>
                             </li>
                             {Array.from(
                                 new Set(
                                     Object.values(products).map(
-                                        (product) => product.category
+                                        (product) =>
+                                            lang === "ru"
+                                                ? product.category_ru
+                                                : product.category_en
                                     )
                                 )
                             ).map((category) => (
@@ -345,11 +295,9 @@ export default function ShugoExpress() {
                                             ? "activeCategory"
                                             : ""
                                     }
-                                    onClick={() => {
-                                        handleCategoryChange({
-                                            target: { value: category },
-                                        });
-                                    }}
+                                    onClick={() =>
+                                        handleCategoryChange({ target: { value: category } })
+                                    }
                                 >
                                     <h2>{category}</h2>
                                 </li>
