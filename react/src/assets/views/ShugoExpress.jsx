@@ -86,17 +86,13 @@ export default function ShugoExpress() {
         setModalOpen(true);
     };
 
-    const handleConfirmPurchase = () => {
+    const handleConfirmPurchase = (data=null) => {
         setPurchaseStatus("В ОБРАБОТКЕ...");
 
-        const data = {
-            ...selectedProduct,
-            personId: selectedPerson ? selectedPerson.id : null,
-            personName: selectedPerson ? selectedPerson.name : null
-        }
+        const params = data ? data : selectedProduct
 
         axiosClient
-            .post("/productPurchase", data)
+            .post("/productPurchase", params)
             .then(({ data }) => {
                 setPurchaseStatus(data.status);
                 setUser(data.user);
@@ -111,6 +107,8 @@ export default function ShugoExpress() {
             });
 
         // setBtnStoreVisible(false);
+
+        setSelectedPerson("")
     };
 
     const handleModalClose = () => {
@@ -221,7 +219,6 @@ export default function ShugoExpress() {
                                 copyTextToClipboard={copyTextToClipboard}
                                 selectPerson={selectPerson}
 
-                                handleSelectedProduct={handleSelectedProduct}
                                 selectedPerson={selectedPerson}
                             />
                             <div className="expressBurgerMenu mob">

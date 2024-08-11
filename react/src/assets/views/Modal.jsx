@@ -12,7 +12,7 @@ const Modal = ({
     isBtnStoreVisible,
     copyTextToClipboard,
     selectPerson,
-    handleSelectedProduct
+    selectedPerson
 }) => {
     if (!isOpen) return null;
 
@@ -41,7 +41,6 @@ const Modal = ({
 
     useEffect(() => {
         const calc = lot == 0 ? product?.price : product?.price * lot;
-
         setPrice(calc)
         setTextPrice(`${calc} WP`);
     }, [lot, setTextPrice, product?.price]);
@@ -55,25 +54,9 @@ const Modal = ({
             <div className="modal">
                 <div className="modal--body">
                     {isBtnStoreVisible && (
-                        // <div className="modal--content">
-                        //     <div className="modalTitle">
-                        //         <p>{`Хотите подтвердить доставку? ${title} за ${lot == 0 ? price : price * lot
-                        //             } WP?`}</p>
-                        //     </div>
-                        //     <div className="btnStore">
-                        //         <button
-                        // id="confirm"
-                        // onClick={onConfirm}
-                        //             className="blinkLight"
-                        //         >
-                        //             <p>ПОДТВЕРДИТЬ</p>
-                        //         </button>
 
-                        //     </div>
-                        // </div>
 
                         <div className="modal--content">
-                            {/* <h2>Test</h2> */}
                             <h1>
                                 [{category}] {title}
                             </h1>
@@ -125,7 +108,7 @@ const Modal = ({
                                     </div>
                                     <br />
                                     <div className="modal--item- price">
-                                        <span>ECoins: {textPrice}</span>
+                                        <span>Цена: {textPrice}</span>
                                         <div className="modal--item-form lot">
                                             <input
                                                 type="text"
@@ -179,10 +162,18 @@ const Modal = ({
                                     <div className="modal--item- buy">
                                         <button
                                             id="confirm"
-                                            onClick={() => {
-                                                handleSelectedProduct(null, product, product.id, price, title, product.item_code, lot)
+                                            onClick={(ev) => {
+                                                const data = {
+                                                    id: product.id,
+                                                    price,
+                                                    title,
+                                                    item_code: product.item_code,
+                                                    lot: lot == 0 ? 1 : lot,
+                                                    personId: selectedPerson ? selectedPerson.id : null,
+                                                    personName: selectedPerson ? selectedPerson.name : null,
+                                                }
 
-                                                onConfirm()
+                                                onConfirm(data)
                                             }}
                                             className="blinkLight"
                                         >

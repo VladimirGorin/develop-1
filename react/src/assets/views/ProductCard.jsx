@@ -52,7 +52,7 @@ const ProductCard = ({ product, handleSelectedProduct }) => {
                     >
                         <p>Подробнее</p>
                     </button>
-                    {product.islot == true && (
+                    {/* {product.islot == true && (
                         <div className="lotProducts">
                             <input
                                 type="text"
@@ -61,7 +61,7 @@ const ProductCard = ({ product, handleSelectedProduct }) => {
                                 onChange={handleLotChange}
                             />
                         </div>
-                    )}
+                    )} */}
                 </div>
             </div>
         </div>

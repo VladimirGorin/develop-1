@@ -90,7 +90,10 @@
 }
 
 .modal--info {
+    width: 100%;
+    max-width: 520px;
     .modal--stats {
+        text-align: left;
     }
 
     .modal--item- {
@@ -157,6 +160,15 @@
             align-items: center;
             background: linear-gradient(18.57deg, rgb(252, 115, 23) -16.21%, rgb(255, 219, 90) 144.917%);
         }
+    }
+}
+
+.modal--image{
+    width: 550px;
+    max-width: 550px;
+
+    img{
+        width: 100%;
     }
 }
 
