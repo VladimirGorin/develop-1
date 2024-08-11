@@ -32,7 +32,7 @@
 
 @function calc-between-width($width-start, $value-start, $width-end, $multiplier: 1.1) {
     @return calc(#{$value-start} * 1px + (#{$value-start * $multiplier} - #{$value-start}) * (100vw - #{$width-start} * 1px) / (#{$width-end} - #{$width-start}))
-} 
+}
 
 $theme-black: (
     "body-color": #101010,
@@ -318,15 +318,29 @@ table > tbody > tr > td {
     align-items: center;
 }
 
+.otherPage{
+    width: 100%;
+
+}
+
+#defaultLayout{
+    width: 100%;
+    margin: 0;
+}
+
 #defaultLayout {
     .mainPage {
         height: calc(100vh - 130px);
     }
+
     .otherPage {
         display: flex;
         flex-direction: column;
-        margin: 0;
+
+        height: fit-content;
+
         height: calc(100vh - 130px);
+        // margin: 20px;
                 // background: rgba(62, 62, 62, 0.7)
         //     url(https://images5.alphacoders.com/400/400028.jpg);
         // background: rgba(0, 0, 0, 0.7) url(../img/site/bg_header.jpeg);
@@ -464,7 +478,7 @@ table > tbody > tr > td {
     width: 100%;
 
     div {
-        
+
         div {
 
             div {
@@ -751,7 +765,7 @@ footer {
         }
         .current-language {
             width: 2vw;
-            height: 1.2vw;  
+            height: 1.2vw;
         }
     }
     .login {

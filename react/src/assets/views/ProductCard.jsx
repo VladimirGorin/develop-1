@@ -19,6 +19,7 @@ const ProductCard = ({ product, handleSelectedProduct }) => {
     const title = lang === "ru" ? product.title_ru : product.title_en;
     const category = lang === "ru" ? product.category_ru : product.category_en;
     const description = lang === "ru" ? product.desc_ru : product.desc_en;
+
     return (
         <div className="product animated fadeInDown">
             <div className="image--product">
@@ -40,6 +41,7 @@ const ProductCard = ({ product, handleSelectedProduct }) => {
                         onClick={(ev) =>
                             handleSelectedProduct(
                                 ev,
+                                product,
                                 product.id,
                                 product.price,
                                 title,
@@ -48,7 +50,7 @@ const ProductCard = ({ product, handleSelectedProduct }) => {
                             )
                         }
                     >
-                        <p>ДОСТАВКА</p>
+                        <p>Подробнее</p>
                     </button>
                     {product.islot == true && (
                         <div className="lotProducts">
